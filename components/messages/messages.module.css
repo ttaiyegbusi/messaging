@@ -92,7 +92,9 @@
   padding: 12px 16px;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
   position: relative;
   margin-bottom: 4px;
   background: none;
@@ -313,7 +315,9 @@
   flex-direction: column;
   gap: 14px;
   min-height: 110px;
-  transition: background 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .composer:focus-within {
@@ -360,7 +364,10 @@
   height: 26px;
   border-radius: 6px;
   color: var(--text-secondary);
-  transition: color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    transform 0.1s ease;
 }
 
 .iconBtn:hover {
@@ -400,7 +407,10 @@
   letter-spacing: 0.1em;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: transform 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
   font-weight: 500;
   margin-top: 60px;
   width: 100%;
@@ -461,7 +471,8 @@
   bottom: -1px;
   height: 2px;
   background: var(--accent);
-  transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 1px;
 }
@@ -529,7 +540,9 @@
   border-radius: 8px;
   font-size: 13px;
   color: var(--text-secondary);
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
   border: none;
 }
 
@@ -577,7 +590,8 @@
   bottom: -1px;
   height: 2px;
   background: var(--accent);
-  transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 1px;
 }
@@ -588,7 +602,12 @@
   max-height: 360px;
   overflow-y: auto;
   scrollbar-width: thin;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 85%,
+    transparent 100%
+  );
   mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
 }
 
@@ -861,23 +880,39 @@
 /* ============ SIDE NAV MENU ============ */
 
 @keyframes overlayFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes overlayFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes panelSlideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes panelSlideOut {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes navItemReveal {
