@@ -1,6 +1,11 @@
 import { ReactNode } from "react";
+import { ConversationProvider } from "@/components/messages/ConversationContext";
 import MessagesShell from "@/components/messages/MessagesShell";
 
 export default function SettingsLayout({ children }: { children: ReactNode }) {
-  return <MessagesShell>{children}</MessagesShell>;
+  return (
+    <ConversationProvider>
+      <MessagesShell>{children}</MessagesShell>
+    </ConversationProvider>
+  );
 }
