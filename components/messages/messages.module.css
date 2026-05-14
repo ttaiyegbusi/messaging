@@ -915,6 +915,7 @@
   flex-direction: column;
   padding: 28px 40px 36px;
   border-left: 1px solid var(--frame-line);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.08);
   animation: panelSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -956,11 +957,13 @@
 
 .menuNav {
   list-style: none;
-  flex: 1;
+  flex: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 60px;
+  gap: 20px;
 }
 
 .menuNavItem {
@@ -992,8 +995,9 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-shrink: 0;
+  margin-top: auto;
   opacity: 0;
   animation: navItemReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
