@@ -1,14 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./messages.module.css";
 
 const NAV_ITEMS = [
-  { label: "Chats", active: true },
-  { label: "Calls", active: false },
-  { label: "People", active: false },
-  { label: "Stories", active: false },
-  { label: "Settings", active: false },
+  { label: "Chats", path: "/messages" },
+  { label: "Calls", path: "/calls" },
+  { label: "People", path: "/people" },
+  { label: "Stories", path: "/stories" },
+  { label: "Settings", path: "/settings" },
 ];
 
 const SOCIAL_LINKS = ["Instagram", "LinkedIn", "Facebook", "X (Twitter)"];
@@ -19,6 +20,7 @@ interface SideNavMenuProps {
 }
 
 export default function SideNavMenu({ isOpen, onClose }: SideNavMenuProps) {
+  const router = useRouter();
   const [rendered, setRendered] = useState(false);
   const [closing, setClosing] = useState(false);
 
@@ -36,6 +38,11 @@ export default function SideNavMenu({ isOpen, onClose }: SideNavMenuProps) {
       onClose();
     }, 300);
   }, [onClose]);
+
+  const handleNavClick = (path: string) => {
+    router.push(path);
+    handleClose();
+  };
 
   useEffect(() => {
     if (!rendered) return;
@@ -75,10 +82,15 @@ export default function SideNavMenu({ isOpen, onClose }: SideNavMenuProps) {
           {NAV_ITEMS.map((item, i) => (
             <li
               key={item.label}
-              className={`${styles.menuNavItem} ${item.active ? styles.menuNavItemActive : ""}`}
+              className={`${styles.menuNavItem}`}
               style={{ animationDelay: `${80 + i * 60}ms` }}
             >
-              {item.label}
+              <button
+                className={styles.menuNavItemBtn}
+                onClick={() => handleNavClick(item.path)}
+              >
+                {item.label}
+              </button>
             </li>
           ))}
         </ul>

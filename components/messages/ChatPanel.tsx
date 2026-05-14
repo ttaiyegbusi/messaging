@@ -1,10 +1,12 @@
 "use client";
 
+import { useRouter, usePathname } from "next/navigation";
 import styles from "./messages.module.css";
 import { Conversation } from "@/lib/types";
 import { avatarClass } from "@/lib/utils";
-import { PlusIcon, MicIcon, SendIcon } from "./icons";
+import { PlusIcon, MicIcon, SendIcon, PaperclipIcon } from "./icons";
 import { useState } from "react";
+import AttachmentMenu from "./AttachmentMenu";
 
 interface ChatPanelProps {
   conversation: Conversation;
@@ -12,15 +14,24 @@ interface ChatPanelProps {
 
 export default function ChatPanel({ conversation }: ChatPanelProps) {
   const [draft, setDraft] = useState("");
+  const [attachmentMenuOpen, setAttachmentMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const inDetails = pathname?.includes("/details");
 
   return (
     <>
       <header className={styles.panelHeader}>
-        <div className={styles.panelTitle}>{conversation.name}</div>
-        <button className={styles.newChat}>
-          <PlusIcon />
-          <span>New Chat</span>
-        </button>
+        <div className={styles.panelTitle}>Chats</div>
+        {!inDetails && (
+          <button
+            className={styles.detailsHeaderBtn}
+            onClick={() => router.push("/messages/details/user-info")}
+          >
+            <span>DETAILS</span>
+            <PaperclipIcon />
+          </button>
+        )}
       </header>
 
       <div className={styles.chatBody}>
@@ -41,7 +52,7 @@ export default function ChatPanel({ conversation }: ChatPanelProps) {
       </div>
 
       <div className={styles.composerWrap}>
-        <div className={styles.composer}>
+        <div className={styles.composer} style={{ position: "relative" }}>
           <textarea
             className={styles.composerInput}
             rows={1}
@@ -50,8 +61,16 @@ export default function ChatPanel({ conversation }: ChatPanelProps) {
             onChange={(e) => setDraft(e.target.value)}
           />
           <div className={styles.composerActions}>
-            <button className={styles.iconBtn} aria-label="Add attachment">
+            <button
+              className={styles.iconBtn}
+              aria-label="Add attachment"
+              onClick={() => setAttachmentMenuOpen(!attachmentMenuOpen)}
+            >
               <PlusIcon />
+              <AttachmentMenu
+                isOpen={attachmentMenuOpen}
+                onClose={() => setAttachmentMenuOpen(false)}
+              />
             </button>
             <div className={styles.composerActionsRight}>
               <button className={styles.iconBtn} aria-label="Record voice">
